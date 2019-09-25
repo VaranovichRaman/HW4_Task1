@@ -14,7 +14,6 @@ namespace HW4_Task1
 
             PlayersNames(length);
 
-            Console.ReadLine();
         }
 
         static int NumberOfPlayers()
@@ -28,7 +27,7 @@ namespace HW4_Task1
             while (flag)
             {
                 bool check = Int32.TryParse(Console.ReadLine(), out count);
-                if ( count > 1 && count < 11 )
+                if ( count > 1 && count < 11 && check == true)
                 {
                     Console.WriteLine($"Great, this is the most optimal number of players!");
 
@@ -49,17 +48,78 @@ namespace HW4_Task1
 
             string[] playersList = new string[number];
 
-            Console.WriteLine($"Enter the name of each player, separating them with the \"Enter\" key.");
+            Console.WriteLine($"\nEnter the name of each player, separating them with the \"Enter\" key.\n");
 
             for (int i = 0; i < playersList.Length; i++)
             {
                 playersList[i] = Console.ReadLine();
             }
 
-            foreach (var item in playersList)
+            Console.WriteLine($"\nOk, all players are here, let's start!\n");
+
+            GameMenu(playersList, number);
+                   
+        }
+        
+        static void GameMenu(string [] list, int number)
+        {  
+            while (true)
             {
-                Console.Write(item + " ");
+
+                Console.WriteLine($"\nType q - for exit, p - for display the list of players, other input - play round.\n");
+
+                string choose = Console.ReadLine();
+
+                if (choose == "q")
+                {
+                    Console.WriteLine($"Goodbye!");
+
+                    Console.ReadLine();
+
+                    return;
+                }
+                else if (choose == "p")
+                {
+
+                    for (int i = 0; i < list.Length; i++)
+                    {
+
+                        Console.WriteLine($"Player {i + 1}: {list[i]};");
+
+                    }
+
+                }
+                else
+                {                    
+                    GameStart(list, number);
+                }
             }
+        }
+
+        static void GameStart(string [] list, int numberOfPlayers )
+        {
+            Random random = new Random();
+
+            Console.WriteLine($"The next quest will be done by {list[random.Next(list.Length - 1)]}, and here’s the quest:\n");
+
+            Quests();
+
+        }
+
+        static void Quests()
+        {
+            string[] mas = new string [5];
+
+            for (int i = 0; i < mas.Length; i++)
+            {
+                mas[i] = $"Drink {i} shot(s)";
+            }
+
+            Random rand = new Random();
+
+            Console.WriteLine($"\n{mas[rand.Next(mas.Length)]}\nPress the Enter key when completing the task\n");
+
+            Console.ReadLine();
 
         }
     }
