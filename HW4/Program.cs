@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace HW4_Task1
 {
@@ -10,9 +11,13 @@ namespace HW4_Task1
     {
         static void Main(string[] args)
         {
+            //History();
+            //ReadFromFile();
             var length = NumberOfPlayers();
 
             PlayersNames(length);
+
+            
 
         }
 
@@ -27,7 +32,7 @@ namespace HW4_Task1
             while (flag)
             {
                 bool check = Int32.TryParse(Console.ReadLine(), out count);
-                if ( count > 1 && count < 11 && check == true)
+                if (count > 1 && count < 11 && check == true)
                 {
                     Console.WriteLine($"Great, this is the most optimal number of players!");
 
@@ -58,11 +63,11 @@ namespace HW4_Task1
             Console.WriteLine($"\nOk, all players are here, let's start!\n");
 
             GameMenu(playersList, number);
-                   
+
         }
-        
-        static void GameMenu(string [] list, int number)
-        {  
+
+        static void GameMenu(string[] list, int number)
+        {
             while (true)
             {
 
@@ -90,13 +95,13 @@ namespace HW4_Task1
 
                 }
                 else
-                {                    
+                {
                     GameStart(list, number);
                 }
             }
         }
 
-        static void GameStart(string [] list, int numberOfPlayers )
+        static void GameStart(string[] list, int numberOfPlayers)
         {
             Random random = new Random();
 
@@ -108,7 +113,7 @@ namespace HW4_Task1
 
         static void Quests()
         {
-            string[] mas = new string [5];
+            string[] mas = new string[20];
 
             for (int i = 0; i < mas.Length; i++)
             {
@@ -122,5 +127,48 @@ namespace HW4_Task1
             Console.ReadLine();
 
         }
+
+        //static void ReadFromFile()
+        //{
+        //    string path = @"D:\quests.txt";
+
+        //    try
+        //    {
+        //        using (StreamReader read = new StreamReader(path, Encoding.Default))
+        //        {
+        //            string line;
+        //            while ((line = read.ReadLine()) != null)
+        //            {
+        //                Console.WriteLine(line);
+        //            }
+        //        }
+
+        //        Console.ReadLine();
+        //        Console.WriteLine();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //    }
+        //}
+
+        //static void History()
+        //{
+        //    string historyFilePath = @"D:\history.txt";
+
+        //    try
+        //    {
+        //        using (StreamWriter sw = new StreamWriter(historyFilePath, true, Encoding.Default))
+        //        {
+        //            sw.WriteLine("NewQuest");                   
+        //        }
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //    }
+
+        //    Console.ReadLine();
+        //}
     }
 }
