@@ -14,39 +14,28 @@ namespace HW4
         {
             while (true)
             {
-
                 Console.WriteLine($"\nType q - for exit, p - for display the list of players, h - for show history, other input - play round.\n");
-
                 string choose = Console.ReadLine();
-
                 if (choose == "q")
                 {
                     Console.WriteLine($"Goodbye!");
-
                     File.Delete("../../history.txt");
-
                     Console.ReadLine();
-
                     return;
                 }
                 else if (choose == "p")
                 {
-
                     for (int i = 0; i < list.Length; i++)
                     {
-
                         Console.WriteLine($"Player {i + 1}: {list[i]};");
-
                     }
-
                 }
                 else if (choose == "h")
                 {
                     Initial_Data.ShowHistory();
                 }
                 else
-                {
-                    
+                {                    
                    GameStart(list, number);
                 }
             }
@@ -55,13 +44,8 @@ namespace HW4
         {
             Random random = new Random();
             string activePlayer = list[random.Next(list.Length - 1)];
-
             Console.WriteLine($"The next quest will be done by {activePlayer}, and here’s the quest:\n");
-
             Initial_Data.Quests(activePlayer);
-
         }
-
-
     }
 }

@@ -13,25 +13,20 @@ namespace HW4
         public static int NumberOfPlayers()
         {
             bool flag = true;
-
             int count = 0;
-
             Console.WriteLine($"Welcome to the game \"Funny quests\" ! Please select number of players from 2 to 10 players.");
-
             while (flag)
             {
                 bool check = Int32.TryParse(Console.ReadLine(), out count);
                 if (count > 1 && count < 11 && check == true)
                 {
                     Console.WriteLine($"Great, this is the most optimal number of players!");
-
                     flag = false;
                 }
                 else
                 {
                     Console.WriteLine($"Wrong number of players, please select from 2 to 10 players.");
                 }
-
             }
 
             return count;
@@ -39,22 +34,16 @@ namespace HW4
 
         public static void PlayersNames(int number)
         {
-
             string[] playersList = new string[number];
-
             Console.WriteLine($"\nEnter the name of each player, separating them with the \"Enter\" key.\n");
-
             for (int i = 0; i < playersList.Length; i++)
             {
                 playersList[i] = Console.ReadLine();
             }
 
             Console.WriteLine($"\nOk, all players are here, let's start!\n");
-
             Menu.GameMenu(playersList, number);
-
         }
-
         public static void Quests(string activePlayer)
         {
             string[] quests = File.ReadAllLines("../../questsList.txt", Encoding.Default);
@@ -73,7 +62,12 @@ namespace HW4
 
         public static void ShowHistory()
         {
-            Console.WriteLine(File.OpenText("../../history.txt"));
+            using (StreamReader readHistory = new StreamReader("../../history.txt"))
+            {                
+                string historyList = readHistory.ReadToEnd();
+                Console.WriteLine(historyList);
+            }
         }
     }
 }
+
