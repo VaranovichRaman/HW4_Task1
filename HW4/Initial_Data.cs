@@ -10,7 +10,7 @@ namespace HW4
 {
     class Initial_Data
     {
-        public static int NumberOfPlayers()
+        public static int SetNumberOfPlayers()
         {
             bool flag = true;
             int count = 0;
@@ -32,9 +32,9 @@ namespace HW4
             return count;
         }
 
-        public static void PlayersNames(int number)
+        public static void SetPlayersNames(int numberOfPlayers)
         {
-            string[] playersList = new string[number];
+            string[] playersList = new string[numberOfPlayers];
             Console.WriteLine($"\nEnter the name of each player, separating them with the \"Enter\" key.\n");
             for (int i = 0; i < playersList.Length; i++)
             {
@@ -42,22 +42,22 @@ namespace HW4
             }
 
             Console.WriteLine($"\nOk, all players are here, let's start!\n");
-            Menu.GameMenu(playersList, number);
+            Menu.GameMenu(playersList, numberOfPlayers);
         }
         public static void Quests(string activePlayer)
         {
             string[] quests = File.ReadAllLines("../../questsList.txt", Encoding.Default);
-            Random rand = new Random();
-            string randomQuest = quests[rand.Next(quests.Length)];
+            Random random = new Random();
+            string randomQuest = quests[random.Next(quests.Length)];
             Console.WriteLine($"\n{randomQuest}\nPress the Enter key when completing the task\n");
-            History(activePlayer, randomQuest);
+            WriteHistory(activePlayer, randomQuest);
             Console.ReadLine();
         }
 
-        public static void History(string activePlayer, string randomQuest)
+        public static void WriteHistory(string activePlayer, string randomQuest)
         {
-            string appendText = $"{activePlayer} completed the quest: \"{randomQuest}\"" + Environment.NewLine;
-            File.AppendAllText("../../history.txt", appendText, Encoding.UTF8);
+            string appendHistory = $"{activePlayer} completed the quest: \"{randomQuest}\"" + Environment.NewLine;
+            File.AppendAllText("../../history.txt", appendHistory, Encoding.Default);
         }
 
         public static void ShowHistory()

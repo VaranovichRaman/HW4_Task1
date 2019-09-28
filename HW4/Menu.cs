@@ -10,7 +10,11 @@ namespace HW4
 {
     class Menu
     {
-         public static void GameMenu(string[] list, int number)
+        public static void GameStart()
+        {
+            Initial_Data.SetPlayersNames(Initial_Data.SetNumberOfPlayers());
+        }
+         public static void GameMenu(string[] playersList, int numberOfPlayers)
         {
             while (true)
             {
@@ -25,9 +29,9 @@ namespace HW4
                 }
                 else if (choose == "p")
                 {
-                    for (int i = 0; i < list.Length; i++)
+                    for (int i = 0; i < playersList.Length; i++)
                     {
-                        Console.WriteLine($"Player {i + 1}: {list[i]};");
+                        Console.WriteLine($"Player {i + 1}: {playersList[i]};");
                     }
                 }
                 else if (choose == "h")
@@ -35,12 +39,12 @@ namespace HW4
                     Initial_Data.ShowHistory();
                 }
                 else
-                {                    
-                   GameStart(list, number);
+                {
+                    PlayerSelection(playersList, numberOfPlayers);
                 }
             }
         }
-        public static void GameStart(string[] list, int numberOfPlayers)
+        public static void PlayerSelection(string[] list, int numberOfPlayers)
         {
             Random random = new Random();
             string activePlayer = list[random.Next(list.Length - 1)];
