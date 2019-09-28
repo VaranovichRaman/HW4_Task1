@@ -1,0 +1,4 @@
+﻿Stand;
+Eat Fish;
+Sit;
+Go home;
